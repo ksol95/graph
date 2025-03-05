@@ -1,0 +1,121 @@
+.graph {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  font-size: 14px;
+
+  .graph__bar {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    height: 28px;
+
+    .bar__tested {
+      display: flex;
+      gap: 4px;
+
+      .bar__value {
+        color: #fff;
+      }
+
+      .bar__value:first-child {
+        background-color: purple;
+      }
+      .bar__value:last-child {
+        background-color: green;
+      }
+    }
+
+    .bar__other {
+      display: flex;
+    }
+
+    .bar__value {
+      position: relative;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: 3px;
+      color: #000;
+      overflow: hidden;
+      .bar__value--text {
+        position: absolute;
+      }
+    }
+  }
+
+  .graph__legend {
+    display: flex;
+    flex-direction: column;
+
+    .legend__scale {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .legend__point {
+        position: relative;
+        color: currentColor;
+        &.active {
+          font-weight: bold;
+        }
+
+        &.active ~ span {
+          color: #ccc;
+        }
+
+        &::before {
+          content: "|";
+        }
+
+        &::after {
+          content: attr(data-percent);
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translate(-50%, 0%);
+          color: currentColor;
+          font-size: 12px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          z-index: 1;
+        }
+        &.active::after {
+          color: currentColor;
+          top: 80%;
+          font-size: 1.2em;
+        }
+        &.current::after {
+          color: red;
+        }
+      }
+    }
+
+    /* .legend__text {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .legend__text--value {
+        color: currentColor;
+        position: relative;
+
+        &::before {
+          content: attr(data-percent);
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 0%);
+          font-size: 12px;
+        }
+        &.active {
+          font-weight: bold;
+          font-size: 2em;
+        }
+      }
+    } */
+  }
+}
